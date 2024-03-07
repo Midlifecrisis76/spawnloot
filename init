@@ -1,0 +1,84 @@
+  override void StartingEquipSetup(PlayerBase player, bool clothesChosen)
+    {
+        EntityAI itemTop;
+        EntityAI itemEnt;
+        ItemBase itemBs;
+        EntityAI itemClothing;
+        float rand;
+ 
+     player.RemoveAllItems();
+    
+    ref TStringArray topsArray = {"tacticalshirt_LiveToSurvive"};
+    ref TStringArray pantsArray = {"cargopants_LiveToSurvive"};
+    ref TStringArray shoesArray = {"jungleboots_LiveToSurvive"};
+    ref TStringArray backpackArray = {"TaloonBag_LiveToSurvive"};
+    ref TStringArray helmArray = {"BaseballCap_LiveToSurvive"};
+    ref TStringArray handsArray = {"tacticalgloves_LiveToSurvive"};
+ 
+ 
+    EntityAI item1 = player.GetInventory().CreateInInventory(topsArray.GetRandomElement());
+    EntityAI item2 = player.GetInventory().CreateInInventory(pantsArray.GetRandomElement());
+    EntityAI item3 = player.GetInventory().CreateInInventory(shoesArray.GetRandomElement());
+    EntityAI item4 = player.GetInventory().CreateInInventory(backpackArray.GetRandomElement());
+    EntityAI item5 = player.GetInventory().CreateInInventory(helmArray.GetRandomElement());
+    EntityAI item7 = player.GetInventory().CreateInInventory(handsArray.GetRandomElement());     
+ 
+   
+ 
+        itemClothing = player.FindAttachmentBySlotName( "Body" );
+        {
+ 
+             itemEnt = player.GetInventory().CreateInInventory("SodaCan_Pipsi");
+        player.SetQuickBarEntityShortcut(itemEnt, 3);
+        
+            
+            itemEnt = player.GetInventory().CreateInInventory("SodaCan_Pipsi");
+ 
+            itemEnt = player.GetInventory().CreateInInventory("BandageDressing");
+            player.SetQuickBarEntityShortcut(itemEnt, 2);
+ 
+            itemEnt = player.GetInventory().CreateInInventory("BakedBeansCan_Opened");
+            player.SetQuickBarEntityShortcut(itemEnt, 4);
+ 
+            itemEnt = player.GetInventory().CreateInInventory("BakedBeansCan_Opened");
+ 
+ 
+            itemEnt = player.GetInventory().CreateInInventory("CombatKnife");
+            player.SetQuickBarEntityShortcut(itemEnt, 0);
+ 
+            
+            itemEnt = player.GetInventory().CreateInInventory("Roadflare");
+            player.SetQuickBarEntityShortcut(itemEnt, 1);
+        
+          
+            };
+        if ( itemClothing )
+        {
+            //SetRandomHealth( itemClothing );
+            
+            //itemEnt = itemClothing.GetInventory().CreateInInventory( "TunaCan" );
+                        if ( Class.CastTo( itemBs, itemEnt ) )
+                itemBs.SetQuantity( 4 );
+ 
+            //SetRandomHealth( itemEnt );
+ 
+            string chemlightArray[] = { "Chemlight_White", "Chemlight_Yellow", "Chemlight_Green", "Chemlight_Red" };
+            int rndIndex = Math.RandomInt( 0, 4 );
+            //itemEnt = itemClothing.GetInventory().CreateInInventory( chemlightArray[rndIndex] );
+            SetRandomHealth( itemEnt );
+        }
+        
+        itemClothing = player.FindAttachmentBySlotName( "legs" );
+        if ( itemClothing )
+            //SetRandomHealth( itemClothing );
+        
+        itemClothing = player.FindAttachmentBySlotName( "Feet" );
+        if ( itemClothing )
+            //SetRandomHealth( itemClothing );
+ 
+    }
+};
+Mission CreateCustomMission(string path)
+{
+    return new CustomMission();
+}
